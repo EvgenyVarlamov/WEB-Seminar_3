@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator v1.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pan">
+        <p>
+            <input class="txt" type="text" id="val1" value=""> Number 1
+        </p>
+        <p>
+            <input class="txt" type="text" id="operation" value=""> Operation
+        </p>
+        <p>
+            <input class="txt" type="text" id="val2" value=""> Number 1
+        </p>
+        <p>
+            <input class="txt" type="text" id="result" value=""> Result
+        </p>
+
+        <p>
+            <button class="btn" onclick="digit(7)" data-id="7">7</button>
+            <button class="btn" onclick="digit(8)" data-id="8">8</button>
+            <button class="btn" onclick="digit(9)" data-id="9">9</button>
+            <button class="btn" onclick="calculate_div()" data-id="div">/</button>
+            <button class="btn" onclick="calculate_rem()" data-id="rem">%</button>
+            <button class="btn" onclick="clearFields()" data-id="AC">AC</button>
+        </p>
+
+        <p>
+            <button class="btn" onclick="digit(4)" data-id="4">4</button>
+            <button class="btn" onclick="digit(5)" data-id="5">5</button>
+            <button class="btn" onclick="digit(6)" data-id="6">6</button>
+            <button class="btn" onclick="calculate_mult()" data-id="mult">x</button>
+            <button class="btn" onclick="calculate_exp()" data-id="exp">^</button>
+            <button class="btn" onclick="correct()" data-id="C">C</button>
+        </p>
+        <p>
+            <button class="btn" onclick="digit(1)" data-id="1">1</button>
+            <button class="btn" onclick="digit(2)" data-id="2">2</button>
+            <button class="btn" onclick="digit(3)" data-id="3">3</button>
+            <button class="btn" onclick="calculate_diff()" data-id="diff">-</button>
+            <button class="btn" onclick="calculate_fact()" data-id="fact">n!</button>
+            <button class="btn" onclick="next(result)" data-id="N">Next</button>
+        </p>
+        <p>
+            <button class="btn" onclick="sign()" data-id="sign">+/-</button>
+            <button class="btn" onclick="digit(0)" data-id="mult">0</button>
+            <button class="btn" onclick="digit('.')" data-id="point">,</button>
+            <button class="btn" onclick="calculate_sum()" data-id="sum">+</button>
+            <button class="btn" onclick="calculate_rev()" data-id="rev">1/X</button>
+            <button class="btn" onclick="digit_res()" data-id="res">=</button>
+        </p>
+    </div>
+    <script>
+        function digit_res() {
+            let x = +document.getElementById("val1").value;
+            let y = +document.getElementById("val2").value;
+            switch (document.getElementById("operation").value) {
+                case '+':
+                    result = x + y;
+                    break;
+                case "-":
+                    result = x - y;
+                    break;
+                case "x":
+                    result = x * y;
+                    break;
+                case "/":
+                    if (y != 0) {
+                        result = x / y;
+                    } else {
+                        result = "Error: by 0 division!";
+                    }
+                    break;
+                case "%":
+                    result = x % y;
+                    break;
+                case "^":
+                    result = x ** y;
+                    break;
+                case "n!":
+                    if (x > 0) {
+                        result = 1;
+                        for (let i = 1; i <= x; i++) {
+                            result *= i;
+                        }
+                    } else {
+                        result = "Error: negative number!";
+                    }
+
+                    break;
+                case "1/X":
+                    result = parseFloat(1 / x);
+                    break;
+            }
+            document.getElementById("result").value = result;
+        }
+        function calculate_sum() {
+            document.getElementById("operation").value = "+";
+        }
+        function calculate_diff() {
+            document.getElementById("operation").value = "-";
+        }
+        function calculate_mult() {
+            document.getElementById("operation").value = "x";
+        }
+        function calculate_div() {
+            document.getElementById("operation").value = "/";
+        }
+        function calculate_rem() {
+            document.getElementById("operation").value = "%";
+        }
+        function calculate_exp() {
+            document.getElementById("operation").value = "^";
+        }
+        function calculate_fact() {
+            document.getElementById("operation").value = "n!";
+            digit_res();
+        }
+        function calculate_rev() {
+            document.getElementById("operation").value = "1/X";
+            digit_res();
+        }
+        function sign() {
+            if (document.getElementById("operation").value === "") {
+                document.getElementById("val1").value = -1 * val1.value;
+            } else {
+                document.getElementById("val2").value = -1 * val2.value;
+            }
+        }
+        function digit(sym) {
+            if (document.getElementById("operation").value === "") {
+                document.getElementById("val1").value = val1.value + sym;
+            } else {
+                document.getElementById("val2").value = val2.value + sym;
+            }
+        }
+        function clearFields() {
+            document.getElementById("val1").value = "";
+            document.getElementById("operation").value = "";
+            document.getElementById("val2").value = "";
+            document.getElementById("result").value = "";
+        }
+        function correct() {
+            if (document.getElementById("operation").value === "") {
+                document.getElementById("val1").value = "";
+            } else {
+                document.getElementById("val2").value = "";
+            }
+        }
+        function next() {
+            document.getElementById("val1").value = result;
+            document.getElementById("operation").value = "";
+            document.getElementById("val2").value = "";
+            document.getElementById("result").value = "";
+        }
+    </script>
+</body>
