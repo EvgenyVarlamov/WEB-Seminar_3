@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 
 <body>
     <div class="pan">
+
         <p>
             <input class="txt" type="text" id="val1" value=""> Number 1
         </p>
@@ -57,6 +58,11 @@
         </p>
     </div>
     <script>
+        let name = prompt("Введите ваше имя:");
+        textOut();
+        function textOut(){
+          alert("Привет, " + name + ", используй для расчётов калькулятор.");  
+        }
         function digit_res() {
             let x = +document.getElementById("val1").value;
             let y = +document.getElementById("val2").value;
